@@ -67,7 +67,7 @@ import nawdawg from 'nawdawg'
 // as defined by a column in the DB
 app.use(
   nawdawg({
-    delayer: async function(req) {
+    async delayer(req) {
       const userObject = await findUser(req.session.user)
       const milliseconds = userObject && userObject.delayByThisManyMilliseconds
       return milliseconds || false
