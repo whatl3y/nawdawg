@@ -1,0 +1,27 @@
+{
+  "name": "nawdawg",
+  "version": "0.0.1",
+  "author": "Lance Whatley <whatl3y@gmail.com>",
+  "license": "MIT",
+  "description": "Add a delay to your express server responses to those you don't like.",
+  "main": "dist/nawdawg.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/whatl3y/nawdawg"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "test": "mocha --exit -r ts-node/register --recursive './src/**/*.spec.ts'"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.8",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^14.0.22",
+    "gulp": "^4.0.2",
+    "gulp-plumber": "^1.2.1",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "mocha": "^5.2.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  }
+}
