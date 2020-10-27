@@ -1,4 +1,6 @@
 import assert from 'assert'
+import axios from 'axios'
+import express from 'express'
 import nawdawg, { sleep, IMiddleware } from './nawdawg'
 
 describe('nawdawg', function() {
@@ -38,6 +40,29 @@ describe('nawdawg', function() {
     })
     const delay = await getMillisecondsToExecute(foo)
     assert(delay >= 1500, `should delay by ~1.5 second`)
+  })
+
+  describe('setup express server and test response', function() {
+    before('setup server', async function() {
+      const app = express()
+      app.use(nawdawg(500))
+
+      app.get('/', (req, res) => {
+        res.send('gotem')
+      })
+      app.listen(9999)
+      await new Promise((resolve) => app.listen(8080, resolve))
+    })
+
+    it('should get a valid response after 1 second', async function() {
+      const start = Date.now()
+      await axios.get('http://localhost:9999')
+      const end = Date.now()
+      assert(
+        end - start >= 500,
+        `should've taken at least 500ms to return response`
+      )
+    })
   })
 })
 
