@@ -56,12 +56,13 @@ describe('nawdawg', function() {
 
     it('should get a valid response after 1 second', async function() {
       const start = Date.now()
-      await axios.get('http://localhost:9999')
+      const { data } = await axios.get('http://localhost:9999')
       const end = Date.now()
       assert(
         end - start >= 500,
         `should've taken at least 500ms to return response`
       )
+      assert.strictEqual(data, 'gotem')
     })
   })
 })

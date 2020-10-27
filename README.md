@@ -44,7 +44,7 @@ import nawdawg from 'nawdawg'
 app.use(
   nawdawg({
     delay: 3000,
-    delayer: function(req) {
+    delayer(req) {
       if (req.session.user === 'pos@acme.com') {
         return true
       }
