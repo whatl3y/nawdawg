@@ -1,6 +1,6 @@
 # nawdawg
 
-Show those you don't like how much you really don't like them by adding a delay to your express server's responses based on conditions you provide.
+An Express middleware to show those you don't like how much you really don't like them by adding a delay to your server's responses based on conditions you provide.
 
 Did your boss add busy work to your already slammed plate during the last 1-on-1? Are you Bruce Wayne and Clark Kent is accessing your app and you want to show him who's boss? Is your CEO taking too many golf trips? Oh your ex just signed up to use your company's app(s)? Lulz, we'll see about that.
 

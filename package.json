@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "author": "Lance Whatley <whatl3y@gmail.com>",
   "license": "MIT",
-  "description": "Add a delay to your express server responses to those you don't like.",
+  "description": "Express middleware to add a delay to your responses to those you don't like.",
   "main": "dist/nawdawg.js",
   "repository": {
     "type": "git",
