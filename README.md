@@ -14,6 +14,8 @@ Did your boss add busy work to your already slammed plate during the last 1-on-1
 import express from 'express'
 import nawdawg from 'nawdawg'
 
+const app = express()
+
 // no arguments delays all requests by 100ms
 app.use(nawdawg())
 
@@ -27,6 +29,8 @@ app.listen(8080)
 import express from 'express'
 import nawdawg from 'nawdawg'
 
+const app = express()
+
 // delay all requests by 1 second (1000 milliseconds)
 app.use(nawdawg(1000))
 
@@ -39,6 +43,8 @@ app.listen(8080)
 ```js
 import express from 'express'
 import nawdawg from 'nawdawg'
+
+const app = express()
 
 // delay all requests by user pos@acme.com (as defined in a session object on request) by 3 seconds
 app.use(
@@ -62,6 +68,8 @@ app.listen(8080)
 ```js
 import express from 'express'
 import nawdawg from 'nawdawg'
+
+const app = express()
 
 // delay all requests by `userObject.delayByThisManyMilliseconds` number of milliseconds
 // as defined by a column in the DB
@@ -96,5 +104,9 @@ If options is not provided all requests will be delayed by 100ms.
 - `options.delay?: number = 100`: the number of milliseconds to delay **if options.delayer returns a boolean**. If `options.delayer` returns a number, it will take precendent over `options.delay`.
 
 ```js
+import express from 'express'
+import nawdawg from 'nawdawg'
+
+const app = express()
 app.use(nawdawg(options))
 ```
