@@ -1,6 +1,6 @@
 {
   "name": "nawdawg",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Lance Whatley <whatl3y@gmail.com>",
   "license": "MIT",
   "description": "Express middleware to add a delay to your responses to those you don't like.",
