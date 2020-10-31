@@ -6,17 +6,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.sleep = void 0;
 const assert_1 = __importDefault(require("assert"));
 function nawdawg(opts) {
+    opts = opts || {};
+    if (typeof opts !== 'number') {
+        opts.delay = opts.delay || 100;
+        opts.delayer = opts.delayer || NOOP;
+        assert_1.default(typeof opts.delay === 'number', `opts.delay should be a number of milliseconds to delay request`);
+        assert_1.default(typeof opts.delayer === 'function', `opts.delayer must be a function`);
+    }
     return async function (req, _, next) {
         try {
             if (typeof opts === 'number') {
                 await sleep(opts);
                 return next();
             }
-            opts = opts || {};
-            opts.delay = opts.delay || 100;
-            opts.delayer = opts.delayer || NOOP;
-            assert_1.default(typeof opts.delay === 'number', `opts.delay should be a number of milliseconds to delay request`);
-            assert_1.default(typeof opts.delayer === 'function', `opts.delayer must be a function`);
+            assert_1.default(opts && opts.delay, 'sanity check for delay');
+            assert_1.default(opts && opts.delayer, 'sanity check for delayer');
             const isAsync = opts.delayer.constructor.name === 'AsyncFunction';
             let delayerResult;
             if (isAsync) {

@@ -13,6 +13,21 @@ export interface IMiddleware {
 }
 
 export default function nawdawg(opts?: number | INawdawgOptions): IMiddleware {
+  opts = opts || {}
+  if (typeof opts !== 'number') {
+    opts.delay = opts.delay || 100
+    opts.delayer = opts.delayer || NOOP
+
+    assert(
+      typeof opts.delay === 'number',
+      `opts.delay should be a number of milliseconds to delay request`
+    )
+    assert(
+      typeof opts.delayer === 'function',
+      `opts.delayer must be a function`
+    )
+  }
+
   return async function(
     req: Request,
     _: Response,
@@ -24,18 +39,8 @@ export default function nawdawg(opts?: number | INawdawgOptions): IMiddleware {
         return next()
       }
 
-      opts = opts || {}
-      opts.delay = opts.delay || 100
-      opts.delayer = opts.delayer || NOOP
-
-      assert(
-        typeof opts.delay === 'number',
-        `opts.delay should be a number of milliseconds to delay request`
-      )
-      assert(
-        typeof opts.delayer === 'function',
-        `opts.delayer must be a function`
-      )
+      assert(opts && opts.delay, 'sanity check for delay')
+      assert(opts && opts.delayer, 'sanity check for delayer')
 
       const isAsync = opts.delayer.constructor.name === 'AsyncFunction'
       let delayerResult: DelayerResult
